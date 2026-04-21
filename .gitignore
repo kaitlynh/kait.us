@@ -48,3 +48,6 @@ Thumbs.db
 # Local favicon placeholders that were empty
 /favicon.gif
 /favicon.ico
+
+# Custom child theme (overrides parent)
+!/wp-content/themes/gutenify-hustle-child/
