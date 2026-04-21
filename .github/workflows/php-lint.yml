@@ -1,0 +1,19 @@
+name: PHP Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint all tracked PHP files
+        shell: bash
+        run: |
+          set -e
+          files=$(git ls-files '*.php')
+          if [ -z "$files" ]; then
+            echo "No PHP files tracked."
+            exit 0
+          fi
+          echo "$files" | xargs -n1 php -l
