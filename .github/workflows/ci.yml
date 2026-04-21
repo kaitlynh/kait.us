@@ -1,0 +1,38 @@
+name: CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint tracked PHP files
+        shell: bash
+        run: |
+          set -e
+          files=$(git ls-files '*.php')
+          if [ -z "$files" ]; then
+            echo "No PHP files tracked."
+            exit 0
+          fi
+          echo "$files" | xargs -n1 php -l
+
+  deploy:
+    needs: lint
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+      - name: Pull latest on server
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+              -o UserKnownHostsFile=~/.ssh/known_hosts \
+              "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+              'cd ~/kait.us && git pull origin main --ff-only'
