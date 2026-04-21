@@ -1,0 +1,50 @@
+# WordPress core (managed by wp-cli, not versioned)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/xmlrpc.php
+/license.txt
+/readme.html
+/.htaccess
+/.well-known/
+/.dh-diag
+
+# Secrets & configs
+/wp-config.php
+/wp-config-sample.php
+/wp-config.php.*
+
+# Uploads, caches, auto-updates
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/upgrade-temp-backup/
+/wp-content/backup*/
+/wp-content/fonts/
+/wp-content/index.php
+/wp-content/advanced-cache.php
+/wp-content/object-cache.php
+/wp-content/db.php
+/wp-content/debug.log
+
+# All third-party plugins & themes (tracked via deploy/third-party-*.csv)
+/wp-content/plugins/*
+/wp-content/themes/*
+
+# When you add custom code, un-ignore it like:
+#   !/wp-content/plugins/my-custom-plugin/
+#   !/wp-content/themes/kait-child-theme/
+#   !/wp-content/mu-plugins/
+
+# Logs / editor / OS
+*.log
+error_log
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local favicon placeholders that were empty
+/favicon.gif
+/favicon.ico
