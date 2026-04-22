@@ -5,6 +5,9 @@
 #
 # Intended crontab:
 #   17 * * * * /bin/bash $HOME/kait.us/deploy/server-sync.sh >> $HOME/kait.us/deploy/server-sync.log 2>&1
+#
+# To force an immediate sync from the laptop:
+#   ssh dreamhost 'bash ~/kait.us/deploy/server-sync.sh'
 set -e
 
 cd ~/kait.us

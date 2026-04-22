@@ -34,6 +34,7 @@ Both directions of sync are automated.
 1. Cron on the server runs `deploy/server-sync.sh` at minute `:17` each hour.
 2. The script regenerates the plugin/theme/WP-core manifest, commits any change, and pushes to GitHub.
 3. On the laptop, `git pull` before starting work to pick up server-side updates (plugin auto-updates, manual wp-admin installs, hand-edits).
+4. To force an immediate sync instead of waiting for the next cron run: `ssh dreamhost 'bash ~/kait.us/deploy/server-sync.sh'`.
 
 ### Auth wiring
 
