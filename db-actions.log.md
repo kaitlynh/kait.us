@@ -121,3 +121,15 @@ Entry template:
 **Command:** `wp post create --post_type=custom_css ...` + `wp theme mod set custom_css_post_id 345`
 **Previous value:** No custom_css post existed (`custom_css_post_id` was -1).
 **Reverted?** no
+
+## 2026-04-24 20:00 CEST
+**Intent:** Swap the two image assets in the Home page (post 15) for "framed" versions with the site's cyan-bracket border (same style as hero / Pisa photo). Imported two new attachments (uri-kalendar framed → ID 346 at `/2026/04/uri-kalendar-1.png`; kaitlyn-graduation framed → ID 347 at `/2026/04/kaitlyn-graduation.png`) and updated the Home page HTML to point to the new IDs + URLs. Old attachments 334 and 335 left in media library for now.
+**Command:** `wp media import` for both new files + `wp post update 15 <file>` with src/id replacements
+**Previous value:** Recent Project image = attachment 334 (`uri-kalendar.png`, no border). Background image = attachment 335 (`kaitlyn-graduation.jpg`, no border).
+**Reverted?** no
+
+## 2026-07-14 06:21 PDT
+**Intent:** Update the German-language line in the "Background" section of the Home page (post 15). Kaitlyn finished the B1 course and is now enrolled in the B2 course. Narrow substring replacement of the parenthetical only.
+**Command:** `wp post update 15 <new-content-file>` (server-side substring replacement: `currently B1, finishing the course at the end of the 2025-2026 school year` → `currently in B2 course`)
+**Previous value:** `I'm working on German now (currently B1, finishing the course at the end of the 2025-2026 school year).`
+**Reverted?** no
